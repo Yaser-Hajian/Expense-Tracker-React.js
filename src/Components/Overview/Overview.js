@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import styles from "../ExpenseTrackerApp/ExpenseTrackerAppStyle.module.css";
 import AddTransaction from "../AddTransaction/AddTransaction";
 
-const Overview = ({expense, income , addTransaction}) => {
+const Overview = ({expense, income , addTransaction , balance}) => {
     const [showForm, setShowForm] = useState(false);
     const clickHandler = () => {
         setShowForm(showForm => !showForm);
@@ -11,7 +11,7 @@ const Overview = ({expense, income , addTransaction}) => {
     return (
         <div>
             <div className={styles.balance_div}>
-                <p>Balance : </p>
+                <p>Balance : ${balance}</p>
                 <button onClick={clickHandler}>{showForm? "Cancel" : "ADD"}</button>
             </div>
             {
@@ -22,10 +22,10 @@ const Overview = ({expense, income , addTransaction}) => {
             }
             <div className={styles.info}>
                 <div>
-                    Expense : {expense}
+                    Expense : ${expense}
                 </div>
                 <div>
-                    Income : {income}
+                    Income : ${income}
                 </div>
             </div>
         </div>

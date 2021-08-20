@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import styles from "./AddTransaction.module.css"
 const AddTransaction = ({addTransaction}) => {
     const [title , setTitle] = useState("");
@@ -6,6 +6,11 @@ const AddTransaction = ({addTransaction}) => {
     const [type , setType] = useState(null);
     const radioInput1 = useRef();
     const radioInput2 = useRef();
+    const titleInput = useRef();
+
+    useEffect(()=>{
+        titleInput.current.focus();
+    },[])
 
     const titleChangeHandler = (event)=>{
         setTitle(event.target.value);
@@ -45,6 +50,7 @@ const AddTransaction = ({addTransaction}) => {
                         placeholder={"TransactionList Title (Required)"}
                         onChange={titleChangeHandler}
                         value={title}
+                        ref={titleInput}
                     />
                     <input
                         type="number"

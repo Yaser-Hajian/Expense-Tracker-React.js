@@ -1,6 +1,6 @@
 import React from 'react';
 import Transaction from "../Transaction/Transaction";
-
+import styles from "./TransactionListStyle.module.css";
 const TransactionList = ({transaction}) => {
     const renderTransactions = (transaction_list)=>{
         return(
@@ -11,6 +11,7 @@ const TransactionList = ({transaction}) => {
                                 title={trans.title}
                                 amount={trans.amount}
                                 type={trans.type}
+                                key={trans.id}
                             />
                     ))
                 }
