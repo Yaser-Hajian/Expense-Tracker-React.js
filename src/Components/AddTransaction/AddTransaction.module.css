@@ -30,7 +30,10 @@ input[type="number"] {
     margin-top: 10px;
 }
 .typeContainer{
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+
 }
 .addBtn {
     color: white;

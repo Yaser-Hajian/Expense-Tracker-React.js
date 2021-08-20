@@ -60,24 +60,29 @@ const AddTransaction = ({addTransaction}) => {
                     />
                 </div>
                 <div className={styles.typeContainer}>
-                    <input
-                        onChange={typeChangeHandler}
-                        type="radio"
-                        name={"type"}
-                        value={"income"}
-                        id={"income"}
-                        ref={radioInput1}
-                    />
+                    <span>
+                        <input
+                            onChange={typeChangeHandler}
+                            type="radio"
+                            name={"type"}
+                            value={"income"}
+                            id={"income"}
+                            ref={radioInput1}
+                        />
                     <label htmlFor={"income"}>Income</label>
-                    <input
-                        onChange={typeChangeHandler}
-                        type="radio"
-                        name={"type"}
-                        value={"expense"}
-                        id={"expense"}
-                        ref={radioInput2}
-                    />
-                    <label htmlFor={"expense"}>Expense</label>
+                    </span>
+                    <span>
+                        <input
+                            onChange={typeChangeHandler}
+                            type="radio"
+                            name={"type"}
+                            value={"expense"}
+                            id={"expense"}
+                            ref={radioInput2}
+                        />
+                        <label htmlFor={"expense"}>Expense</label>
+                    </span>
+
                 </div>
                 <div className={styles.addBtnContainer}>
                     <button type={"submit"} className={styles.addBtn}>ADD</button>
