@@ -1,6 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react';
 import styles from "./AddTransaction.module.css"
-const AddTransaction = ({addTransaction}) => {
+const AddTransaction = ({addTransaction , setShowForm}) => {
     const [title , setTitle] = useState("");
     const [amount , setAmount] = useState("");
     const [type , setType] = useState(null);
@@ -39,6 +39,7 @@ const AddTransaction = ({addTransaction}) => {
             setType(null);
             radioInput1.current.checked = false;
             radioInput2.current.checked = false;
+            setShowForm(false);
         }
     }
     return (
