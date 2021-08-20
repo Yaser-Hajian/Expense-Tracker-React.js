@@ -30,7 +30,12 @@ const ExpenseTrackerApp = () => {
     }
     return (
         <div className={styles.container}>
-            <Overview expense={expense} income={income} addTransaction={addTransaction} balance={balance}/>
+            <Overview
+                expense={expense}
+                income={income}
+                addTransaction={addTransaction}
+                balance={balance}
+            />
             <TransactionList transaction={transaction}/>
         </div>
     );

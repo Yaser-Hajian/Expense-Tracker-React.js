@@ -21,11 +21,11 @@ const Overview = ({expense, income , addTransaction , balance}) => {
                     </div>
             }
             <div className={styles.info}>
-                <div>
-                    Expense : ${expense}
+                <div className={styles.expenseBox}>
+                    Expense: <span>${expense}</span>
                 </div>
-                <div>
-                    Income : ${income}
+                <div className={styles.incomeBox}>
+                    Income: <span>${income}</span>
                 </div>
             </div>
         </div>
