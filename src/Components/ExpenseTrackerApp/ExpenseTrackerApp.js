@@ -45,7 +45,7 @@ const ExpenseTrackerApp = () => {
                 addTransaction={addTransaction}
                 balance={balance}
             />
-            <TransactionList transaction={showedTransaction} setSearchValue={setSearchValue}/>
+            <TransactionList transaction={transaction} showedTransaction={showedTransaction} setSearchValue={setSearchValue}/>
         </div>
     );
 };
