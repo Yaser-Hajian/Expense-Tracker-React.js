@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
-import styles from "../ExpenseTrackerApp/ExpenseTrackerAppStyle.module.css";
 import AddTransaction from "../AddTransaction/AddTransaction";
-
+import styles from "./OverviewStyle.module.css";
 const Overview = ({expense, income , addTransaction , balance}) => {
     const [showForm, setShowForm] = useState(false);
     const clickHandler = () => {
@@ -11,8 +10,13 @@ const Overview = ({expense, income , addTransaction , balance}) => {
     return (
         <div>
             <div className={styles.balance_div}>
-                <p>Balance : ${balance}</p>
-                <button onClick={clickHandler}>{showForm? "Cancel" : "ADD"}</button>
+                <p className={styles.balance}>Balance : ${balance}</p>
+                <button
+                    onClick={clickHandler}
+                    className={`${showForm ? styles.cancelBtn : styles.addBtn}`}
+                    >
+                    {showForm? "Cancel" : "ADD"}
+                </button>
             </div>
             {
                 showForm &&

@@ -80,7 +80,7 @@ const AddTransaction = ({addTransaction}) => {
                     <label htmlFor={"expense"}>Expense</label>
                 </div>
                 <div className={styles.addBtnContainer}>
-                    <button type={"submit"}>ADD</button>
+                    <button type={"submit"} className={styles.addBtn}>ADD</button>
                 </div>
 
             </form>
