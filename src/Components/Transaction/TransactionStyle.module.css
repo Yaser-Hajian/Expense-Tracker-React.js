@@ -25,3 +25,17 @@
 div > div >span{
     font-weight: bold;
 }
+.title{
+    display: flex;
+    flex-direction: row;
+    width: 150px;
+    overflow: auto;
+    justify-content: left;
+}
+.amount{
+    display: flex;
+    flex-direction: row;
+    width: 150px;
+    overflow: auto;
+    justify-content: left;
+}

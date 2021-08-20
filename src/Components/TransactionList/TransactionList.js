@@ -21,7 +21,7 @@ const TransactionList = ({transaction}) => {
     return (
         <div>
             {
-                transaction.length? renderTransactions(transaction) : <p>You have not added any transaction yet!</p>
+                transaction.length? renderTransactions(transaction) : <p className={styles.empty}>You have not added any transaction yet!</p>
             }
         </div>
     );
