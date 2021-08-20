@@ -1,9 +1,17 @@
 import React from 'react';
 
-const Transaction = ({transaction}) => {
+const Transaction = ({title,amount,type}) => {
     return (
         <div>
-            Transaction component
+            <div>
+                title = {title}
+            </div>
+            <div>
+                amount ={amount}
+            </div>
+            <div>
+                type ={type}
+            </div>
         </div>
     );
 };

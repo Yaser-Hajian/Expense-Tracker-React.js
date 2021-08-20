@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import styles from "./ExpenseTrackerAppStyle.module.css"
-import Transaction from "../Transaction/Transaction";
+import TransactionList from "../TransactionList/TransactionList";
 import Overview from "../Overview/Overview";
 const ExpenseTrackerApp = () => {
     const [expense , setExpense] = useState(0);
@@ -20,7 +20,7 @@ const ExpenseTrackerApp = () => {
     return (
         <div className={styles.container}>
             <Overview expense={expense} income={income} addTransaction={addTransaction}/>
-            <Transaction transaction={transaction}/>
+            <TransactionList transaction={transaction}/>
         </div>
     );
 };

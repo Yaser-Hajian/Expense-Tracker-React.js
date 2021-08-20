@@ -42,13 +42,13 @@ const AddTransaction = ({addTransaction}) => {
                 <div className={styles.inputContainer}>
                     <input
                         type="text"
-                        placeholder={"Transaction Title (Required)"}
+                        placeholder={"TransactionList Title (Required)"}
                         onChange={titleChangeHandler}
                         value={title}
                     />
                     <input
                         type="number"
-                        placeholder={"Transaction Amount (Required)"}
+                        placeholder={"TransactionList Amount (Required)"}
                         onChange={amountChangeHandler}
                         value={amount}
                     />
