@@ -1,10 +1,13 @@
 import React from 'react';
 import Transaction from "../Transaction/Transaction";
 import styles from "./TransactionListStyle.module.css";
-const TransactionList = ({transaction}) => {
+import SearchBar from "../SearchBar/SearchBar";
+const TransactionList = ({transaction ,setSearchValue}) => {
     const renderTransactions = (transaction_list)=>{
         return(
             <div>
+                <h3 className={styles.title}>Transactions</h3>
+                <SearchBar setSearchValue={setSearchValue}/>
                 {
                     transaction_list.map((trans =>
                             <Transaction

@@ -8,10 +8,15 @@ const ExpenseTrackerApp = () => {
     const [income, setIncome] = useState(0);
     const [balance, setBalance] = useState(0);
     const [transaction, setTransaction] = useState([]);
+    const [showedTransaction, setShowedTransaction] = useState([]);
+    const [searchValue , setSearchValue] = useState("");
     useEffect(()=>{
         const newBalance =  income - expense;
         setBalance(newBalance);
     },[expense , income])
+    useEffect(()=>{
+        searchTransaction(searchValue);
+    },[transaction , searchValue])
     const addTransaction = (transactionData) => {
         const newTransaction = {
             id: Date.now(),
@@ -28,6 +33,10 @@ const ExpenseTrackerApp = () => {
             setIncome(inc => inc + parseInt(transactionData.amount));
         }
     }
+    const searchTransaction=(value)=>{
+        const validTransactions = transaction.filter(tr => tr.title.toLowerCase().includes(value.toLowerCase()));
+        setShowedTransaction(validTransactions);
+    }
     return (
         <div className={styles.container}>
             <Overview
@@ -36,7 +45,7 @@ const ExpenseTrackerApp = () => {
                 addTransaction={addTransaction}
                 balance={balance}
             />
-            <TransactionList transaction={transaction}/>
+            <TransactionList transaction={showedTransaction} setSearchValue={setSearchValue}/>
         </div>
     );
 };
