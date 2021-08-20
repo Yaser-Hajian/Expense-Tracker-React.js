@@ -2,16 +2,16 @@ import React from 'react';
 import styles from "./TransactionStyle.module.css"
 const Transaction = ({title,amount,type}) => {
     return (
-        <div className={styles.container}>
+        <div className={`${type === "expense"? styles.expContainer : styles.incContainer}`}>
             <div>
-                title = {title}
+                title = <span>{title}</span>
             </div>
             <div>
-                amount ={amount}
+                amount = <span>${amount}</span>
             </div>
-            <div>
-                type ={type}
-            </div>
+            {/*<div>*/}
+            {/*    type ={type}*/}
+            {/*</div>*/}
         </div>
     );
 };
