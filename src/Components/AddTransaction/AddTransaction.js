@@ -1,9 +1,11 @@
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import styles from "./AddTransaction.module.css"
-const AddTransaction = () => {
+const AddTransaction = ({addTransaction}) => {
     const [title , setTitle] = useState("");
-    const [amount , setAmount] = useState(0);
+    const [amount , setAmount] = useState("");
     const [type , setType] = useState(null);
+    const radioInput1 = useRef();
+    const radioInput2 = useRef();
 
     const titleChangeHandler = (event)=>{
         setTitle(event.target.value);
@@ -16,11 +18,22 @@ const AddTransaction = () => {
     }
     const submitHandler=(event)=>{
         event.preventDefault();
-        if (title === "" || amount=== 0){
+        let isOK = true;
+        if (title === "" || amount === ""){
             alert("You have to set transaction title and amount");
+            isOK = false;
         }
         if (type === null){
             alert("you have to set transaction type");
+            isOK = false;
+        }
+        if (isOK){
+            addTransaction({title:title , amount : amount , type : type});
+            setTitle("");
+            setAmount("");
+            setType(null);
+            radioInput1.current.checked = false;
+            radioInput2.current.checked = false;
         }
     }
     return (
@@ -37,12 +50,27 @@ const AddTransaction = () => {
                         type="number"
                         placeholder={"Transaction Amount (Required)"}
                         onChange={amountChangeHandler}
+                        value={amount}
                     />
                 </div>
                 <div className={styles.typeContainer}>
-                    <input onChange={typeChangeHandler} type="radio" name={"type"} value={"income"} id={"income"}/>
+                    <input
+                        onChange={typeChangeHandler}
+                        type="radio"
+                        name={"type"}
+                        value={"income"}
+                        id={"income"}
+                        ref={radioInput1}
+                    />
                     <label htmlFor={"income"}>Income</label>
-                    <input onChange={typeChangeHandler} type="radio" name={"type"} value={"expense"} id={"expense"}/>
+                    <input
+                        onChange={typeChangeHandler}
+                        type="radio"
+                        name={"type"}
+                        value={"expense"}
+                        id={"expense"}
+                        ref={radioInput2}
+                    />
                     <label htmlFor={"expense"}>Expense</label>
                 </div>
                 <div className={styles.addBtnContainer}>

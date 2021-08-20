@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import styles from "../ExpenseTrackerApp/ExpenseTrackerAppStyle.module.css";
 import AddTransaction from "../AddTransaction/AddTransaction";
 
-const Overview = ({expense, income}) => {
+const Overview = ({expense, income , addTransaction}) => {
     const [showForm, setShowForm] = useState(false);
     const clickHandler = () => {
         setShowForm(showForm => !showForm);
@@ -17,7 +17,7 @@ const Overview = ({expense, income}) => {
             {
                 showForm &&
                     <div>
-                        <AddTransaction />
+                        <AddTransaction addTransaction={addTransaction}/>
                     </div>
             }
             <div className={styles.info}>
