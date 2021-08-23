@@ -3,18 +3,19 @@ import Transaction from "../Transaction/Transaction";
 import styles from "./TransactionListStyle.module.css";
 import SearchBar from "../SearchBar/SearchBar";
 import AddTransaction from "../AddTransaction/AddTransaction";
+import FilterTransaction from "../Filter/FilterTransaction";
 
-const TransactionList = ({transaction, showedTransaction, setSearchValue, deleteHandler , editHandler}) => {
+const TransactionList = ({transaction, transactionsList, setSearchValue, deleteHandler , editHandler , setFilterValue}) => {
     const [editItem, setEditItem] = useState("");
     const editItemHandler=(transactionObject)=>{
         editHandler(transactionObject , editItem.id);
         setEditItem("");
     }
-    const renderTransactions = (transaction_list) => {
+    const renderTransactions = (transactions)=> {
         return (
             <div>
                 {
-                    transaction_list.map((trans =>
+                    transactions.map((trans =>
                             <Transaction
                                 title={trans.title}
                                 amount={trans.amount}
@@ -30,6 +31,7 @@ const TransactionList = ({transaction, showedTransaction, setSearchValue, delete
     }
     return (
         <div>
+
             {
                 editItem ?
                     (
@@ -42,9 +44,10 @@ const TransactionList = ({transaction, showedTransaction, setSearchValue, delete
                         <>
                             <h3 className={styles.title}>Transactions</h3>
                             <SearchBar setSearchValue={setSearchValue}/>
+                            <FilterTransaction setFilterValue={setFilterValue}/>
                             {
-                                showedTransaction.length ? renderTransactions(showedTransaction) :
-
+                                transactionsList.length ? renderTransactions(transactionsList)
+                                    :
                                     transaction.length ?
                                         <p className={styles.empty}>no item matched!</p>
                                         :

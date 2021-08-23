@@ -8,8 +8,11 @@ const ExpenseTrackerApp = () => {
     const [income, setIncome] = useState(0);
     const [balance, setBalance] = useState(0);
     const [transaction, setTransaction] = useState([]);
-    const [showedTransaction, setShowedTransaction] = useState([]);
-    const [searchValue, setSearchValue] = useState("");
+    const [searchedTransaction, setSearchedTransaction] = useState([]);
+    const [filteredTransaction, setFilteredTransaction] = useState([]);
+    const [searchValue, setSearchValue] = useState("All");
+    const [filterValue, setFilterValue] = useState("All");
+
     useEffect(() => {
         let incomeValue = 0, expenseValue = 0;
         transaction.filter(trans => trans.type === "expense" ?
@@ -22,7 +25,11 @@ const ExpenseTrackerApp = () => {
     }, [transaction])
     useEffect(() => {
         searchTransaction(searchValue);
-    }, [transaction, searchValue])
+        // filterTransaction(filterValue);
+    }, [transaction, searchValue ])
+    useEffect(()=>{
+        filterTransaction(filterValue);
+    },[filterValue , searchedTransaction])
     const addTransaction = (transactionData) => {
         const newTransaction = {
             id: Date.now(),
@@ -35,8 +42,12 @@ const ExpenseTrackerApp = () => {
         setTransaction(current_transactions);
     }
     const searchTransaction = (value) => {
-        const validTransactions = transaction.filter(tr => tr.title.toLowerCase().includes(value.toLowerCase()));
-        setShowedTransaction(validTransactions);
+        if (value === "All" || value === ""){
+            setSearchedTransaction(transaction);
+        }else{
+            const validTransactions = transaction.filter(tr => tr.title.toLowerCase().includes(value.toLowerCase()));
+            setSearchedTransaction(validTransactions);
+        }
     }
     const deleteHandler = (id) => {
         const newTransactionsList = transaction.filter(tran => tran.id !== id);
@@ -52,6 +63,14 @@ const ExpenseTrackerApp = () => {
         copy_transactions_list[index] = copy_transaction;
         setTransaction(copy_transactions_list);
     }
+    const filterTransaction=(value)=>{
+        if (value === "All" ){
+            setFilteredTransaction(searchedTransaction);
+        }else{
+            const filter_trans = searchedTransaction.filter(trans => trans.type === value);
+            setFilteredTransaction(filter_trans)
+        }
+    }
     return (
         <div className={styles.container}>
             <Overview
@@ -62,10 +81,11 @@ const ExpenseTrackerApp = () => {
             />
             <TransactionList
                 transaction={transaction}
-                showedTransaction={showedTransaction}
+                transactionsList={filteredTransaction}
                 setSearchValue={setSearchValue}
                 deleteHandler={deleteHandler}
                 editHandler={editHandler}
+                setFilterValue={setFilterValue}
             />
         </div>
     );
