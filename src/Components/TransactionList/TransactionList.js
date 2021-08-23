@@ -2,7 +2,7 @@ import React from 'react';
 import Transaction from "../Transaction/Transaction";
 import styles from "./TransactionListStyle.module.css";
 import SearchBar from "../SearchBar/SearchBar";
-const TransactionList = ({transaction ,showedTransaction,setSearchValue}) => {
+const TransactionList = ({transaction ,showedTransaction,setSearchValue , deleteHandler}) => {
     const renderTransactions = (transaction_list)=>{
         return(
             <div>
@@ -12,6 +12,7 @@ const TransactionList = ({transaction ,showedTransaction,setSearchValue}) => {
                                 title={trans.title}
                                 amount={trans.amount}
                                 type={trans.type}
+                                deleteHandler={()=>deleteHandler(trans.id)}
                                 key={trans.id}
                             />
                     ))

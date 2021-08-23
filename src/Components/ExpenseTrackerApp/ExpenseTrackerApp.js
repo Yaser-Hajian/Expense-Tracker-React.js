@@ -9,14 +9,20 @@ const ExpenseTrackerApp = () => {
     const [balance, setBalance] = useState(0);
     const [transaction, setTransaction] = useState([]);
     const [showedTransaction, setShowedTransaction] = useState([]);
-    const [searchValue , setSearchValue] = useState("");
-    useEffect(()=>{
-        const newBalance =  income - expense;
+    const [searchValue, setSearchValue] = useState("");
+    useEffect(() => {
+        let incomeValue = 0, expenseValue = 0;
+        transaction.filter(trans => trans.type === "expense" ?
+            expenseValue += parseFloat(trans.amount) : incomeValue += parseFloat(trans.amount));
+        setIncome(incomeValue);
+        setExpense(expenseValue);
+        const newBalance = incomeValue - expenseValue;
         setBalance(newBalance);
-    },[expense , income])
-    useEffect(()=>{
+
+    }, [transaction])
+    useEffect(() => {
         searchTransaction(searchValue);
-    },[transaction , searchValue])
+    }, [transaction, searchValue])
     const addTransaction = (transactionData) => {
         const newTransaction = {
             id: Date.now(),
@@ -27,15 +33,14 @@ const ExpenseTrackerApp = () => {
         const current_transactions = [...transaction];
         current_transactions.unshift(newTransaction);
         setTransaction(current_transactions);
-        if (transactionData.type === "expense") {
-            setExpense(exp => exp + parseInt(transactionData.amount) );
-        } else {
-            setIncome(inc => inc + parseInt(transactionData.amount));
-        }
     }
-    const searchTransaction=(value)=>{
+    const searchTransaction = (value) => {
         const validTransactions = transaction.filter(tr => tr.title.toLowerCase().includes(value.toLowerCase()));
         setShowedTransaction(validTransactions);
+    }
+    const deleteHandler = (id) => {
+        const newTransactionsList = transaction.filter(tran => tran.id !== id);
+        setTransaction(newTransactionsList);
     }
     return (
         <div className={styles.container}>
@@ -45,7 +50,12 @@ const ExpenseTrackerApp = () => {
                 addTransaction={addTransaction}
                 balance={balance}
             />
-            <TransactionList transaction={transaction} showedTransaction={showedTransaction} setSearchValue={setSearchValue}/>
+            <TransactionList
+                transaction={transaction}
+                showedTransaction={showedTransaction}
+                setSearchValue={setSearchValue}
+                deleteHandler={deleteHandler}
+            />
         </div>
     );
 };
