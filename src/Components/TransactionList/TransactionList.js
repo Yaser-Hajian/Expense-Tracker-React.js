@@ -33,7 +33,7 @@ const TransactionList = ({transaction, showedTransaction, setSearchValue, delete
             {
                 editItem ?
                     (
-                        <div>
+                        <div className={styles.editContainer}>
                             <AddTransaction submitHandler={editItemHandler} editItem={editItem}/>
                         </div>
                     )

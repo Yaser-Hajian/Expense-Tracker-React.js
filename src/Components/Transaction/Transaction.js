@@ -9,9 +9,9 @@ const Transaction = ({title,amount,type , onDelete ,onEdit}) => {
             <div className={styles.amount}>
                 Amount= <span> ${amount}</span>
             </div>
-            <div>
-                <button onClick={()=>onEdit()}>Edit</button>
-                <button onClick={()=>onDelete()}>Delete</button>
+            <div className={styles.optionsContainer}>
+                <button onClick={()=>onEdit()} className={styles.editBtn}>Edit</button>
+                <button onClick={()=>onDelete()}className={styles.DeleteBtn}>Delete</button>
             </div>
         </div>
     );

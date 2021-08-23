@@ -6,7 +6,7 @@
     padding: 10px;
     border: 1px solid #E4E4E7;
     border-radius: 10px;
-    width: 80%;
+    width: 90%;
     background-color: #F4F4F5;
     border-right: 5px solid red;
 }
@@ -18,7 +18,7 @@
     padding: 10px;
     border: 1px solid #E4E4E7;
     border-radius: 10px;
-    width: 80%;
+    width: 90%;
     background-color: #F4F4F5;
     border-right: 5px solid green;
 }
@@ -28,14 +28,40 @@ div > div >span{
 .title{
     display: flex;
     flex-direction: row;
-    width: 150px;
+    width: 35%;
     overflow: auto;
     justify-content: left;
 }
 .amount{
     display: flex;
     flex-direction: row;
-    width: 150px;
+    width: 35%;
     overflow: auto;
     justify-content: left;
+}
+.optionsContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 30%;
+}
+.editBtn{
+    cursor: pointer;
+    width: 60px;
+    padding: 5px;
+    color: white;
+    background-color: #60A5FA;
+    border-radius: 5px;
+    border: 1px solid #60A5FA ;
+}
+.DeleteBtn{
+    cursor: pointer;
+    width: 60px;
+    padding: 5px ;
+    color: #EF4444;
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid #EF4444;
+
 }
