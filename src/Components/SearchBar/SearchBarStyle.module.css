@@ -1,6 +1,10 @@
 .input{
     align-items: center;
+    width: 100px;
 }
 .searchContainer{
     text-align: center;
+}
+@media screen and (max-width: 460px) {
+
 }

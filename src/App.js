@@ -5,7 +5,7 @@ import ExpenseTrackerApp from "./Components/ExpenseTrackerApp/ExpenseTrackerApp"
 function App() {
   return (
     <div className="App">
-        <h1>Expense Tracker App - Yaser</h1>
+        <h1 className={"title"}>Expense Tracker App - Yaser</h1>
         <ExpenseTrackerApp />
     </div>
   );

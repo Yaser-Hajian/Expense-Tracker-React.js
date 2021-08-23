@@ -8,3 +8,9 @@
   padding-top: 20px;
   padding-bottom: 50px;
 }
+@media screen and (max-width: 460px) {
+    .title{
+      text-align: center;
+      font-size: 25px;
+    }
+}

@@ -1,8 +1,13 @@
 .container{
-    width: 500px;
+    width: 50%;
     background-color: white;
     border: 1px solid #cccccc;
     border-radius: 5px;
     padding: 10px;
     margin-bottom: 50px;
+}
+@media screen and (max-width: 460px) {
+    .container{
+        width: 90%;
+    }
 }

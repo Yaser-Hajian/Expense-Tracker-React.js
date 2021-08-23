@@ -42,3 +42,11 @@ input[type="number"] {
     border: none;
     padding: 7px 10px;
 }
+@media screen and (max-width: 460px) {
+    input[type="text"] {
+        width: 150px;
+    }
+    input[type="number"] {
+        width: 150px;
+    }
+}
