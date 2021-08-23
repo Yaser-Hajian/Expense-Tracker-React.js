@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import Select from "react-select";
-
+import styles from "./FilterStyle.module.css"
 const FilterTransaction = ({setFilterValue}) => {
     const [selectedOption , setSelectedOption] = useState("");
     const options = [
@@ -14,12 +14,13 @@ const FilterTransaction = ({setFilterValue}) => {
         setSelectedOption(event);
     }
     return (
-        <div>
+        <div className={styles.container}>
             <span>Filter By :</span>
             <Select
                 value={selectedOption}
                 onChange={changeHandler}
                 options={options}
+                className={styles.select}
             />
         </div>
 
