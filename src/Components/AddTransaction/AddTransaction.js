@@ -1,9 +1,9 @@
 import React, {useEffect, useRef, useState} from 'react';
 import styles from "./AddTransaction.module.css"
-const AddTransaction = ({addTransaction , setShowForm}) => {
+const AddTransaction = ({submitHandler , setShowForm , editItem}) => {
     const [title , setTitle] = useState("");
     const [amount , setAmount] = useState("");
-    const [type , setType] = useState(null);
+    const [type , setType] = useState("");
     const radioInput1 = useRef();
     const radioInput2 = useRef();
     const titleInput = useRef();
@@ -11,7 +11,13 @@ const AddTransaction = ({addTransaction , setShowForm}) => {
     useEffect(()=>{
         titleInput.current.focus();
     },[])
-
+    useEffect(()=>{
+        if (editItem){
+            setTitle(editItem.title);
+            setAmount(editItem.amount);
+            setType(editItem.type);
+        }
+    },[])
     const titleChangeHandler = (event)=>{
         setTitle(event.target.value);
     }
@@ -21,7 +27,7 @@ const AddTransaction = ({addTransaction , setShowForm}) => {
     const typeChangeHandler=(event)=>{
         setType(event.target.value);
     }
-    const submitHandler=(event)=>{
+    const onSubmit=(event)=>{
         event.preventDefault();
         let isOK = true;
         if (title === "" || amount === ""){
@@ -33,18 +39,20 @@ const AddTransaction = ({addTransaction , setShowForm}) => {
             isOK = false;
         }
         if (isOK){
-            addTransaction({title:title , amount : amount , type : type});
+            submitHandler({title:title , amount : amount , type : type});
             setTitle("");
             setAmount("");
             setType(null);
             radioInput1.current.checked = false;
             radioInput2.current.checked = false;
-            setShowForm(false);
+            if (setShowForm){
+                setShowForm(false);
+            }
         }
     }
     return (
         <div className={styles.container}>
-            <form onSubmit={submitHandler}>
+            <form onSubmit={onSubmit}>
                 <div className={styles.inputContainer}>
                     <input
                         type="text"
@@ -69,6 +77,7 @@ const AddTransaction = ({addTransaction , setShowForm}) => {
                             value={"income"}
                             id={"income"}
                             ref={radioInput1}
+                            checked={type==="income"}
                         />
                     <label htmlFor={"income"}>Income</label>
                     </span>
@@ -80,13 +89,16 @@ const AddTransaction = ({addTransaction , setShowForm}) => {
                             value={"expense"}
                             id={"expense"}
                             ref={radioInput2}
+                            checked={type==="expense"}
                         />
                         <label htmlFor={"expense"}>Expense</label>
                     </span>
 
                 </div>
                 <div className={styles.addBtnContainer}>
-                    <button type={"submit"} className={styles.addBtn}>ADD</button>
+                    <button type={"submit"} className={styles.addBtn}>
+                        {editItem? "Update" : "ADD" }
+                    </button>
                 </div>
 
             </form>

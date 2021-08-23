@@ -42,6 +42,16 @@ const ExpenseTrackerApp = () => {
         const newTransactionsList = transaction.filter(tran => tran.id !== id);
         setTransaction(newTransactionsList);
     }
+    const editHandler=(transactionObject , id)=>{
+        const copy_transactions_list = [...transaction];
+        const index = transaction.findIndex(trans => trans.id === id);
+        const copy_transaction = {...transaction[index]};
+        copy_transaction.title = transactionObject.title;
+        copy_transaction.amount= transactionObject.amount;
+        copy_transaction.type = transactionObject.type;
+        copy_transactions_list[index] = copy_transaction;
+        setTransaction(copy_transactions_list);
+    }
     return (
         <div className={styles.container}>
             <Overview
@@ -55,6 +65,7 @@ const ExpenseTrackerApp = () => {
                 showedTransaction={showedTransaction}
                 setSearchValue={setSearchValue}
                 deleteHandler={deleteHandler}
+                editHandler={editHandler}
             />
         </div>
     );

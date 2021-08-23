@@ -1,10 +1,17 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Transaction from "../Transaction/Transaction";
 import styles from "./TransactionListStyle.module.css";
 import SearchBar from "../SearchBar/SearchBar";
-const TransactionList = ({transaction ,showedTransaction,setSearchValue , deleteHandler}) => {
-    const renderTransactions = (transaction_list)=>{
-        return(
+import AddTransaction from "../AddTransaction/AddTransaction";
+
+const TransactionList = ({transaction, showedTransaction, setSearchValue, deleteHandler , editHandler}) => {
+    const [editItem, setEditItem] = useState("");
+    const editItemHandler=(transactionObject)=>{
+        editHandler(transactionObject , editItem.id);
+        setEditItem("");
+    }
+    const renderTransactions = (transaction_list) => {
+        return (
             <div>
                 {
                     transaction_list.map((trans =>
@@ -12,7 +19,8 @@ const TransactionList = ({transaction ,showedTransaction,setSearchValue , delete
                                 title={trans.title}
                                 amount={trans.amount}
                                 type={trans.type}
-                                deleteHandler={()=>deleteHandler(trans.id)}
+                                onDelete={() => deleteHandler(trans.id)}
+                                onEdit={() => setEditItem(trans)}
                                 key={trans.id}
                             />
                     ))
@@ -20,26 +28,32 @@ const TransactionList = ({transaction ,showedTransaction,setSearchValue , delete
             </div>
         )
     }
-    // const emptyTransaction=()=>{
-    //     return(
-    //         <div className={styles.empty}>
-    //             <SearchBar setSearchValue={setSearchValue}/>
-    //             <p className={styles.empty}>You have not added any transaction yet!</p>
-    //         </div>
-    //     )
-    // }
     return (
         <div>
-            <h3 className={styles.title}>Transactions</h3>
-            <SearchBar setSearchValue={setSearchValue}/>
             {
-                showedTransaction.length? renderTransactions(showedTransaction) :
-
-                transaction.length ?
-                    <p className={styles.empty}>no item matched!</p>
+                editItem ?
+                    (
+                        <div>
+                            <AddTransaction submitHandler={editItemHandler} editItem={editItem}/>
+                        </div>
+                    )
                     :
-                    <p className={styles.empty}>You have not added any transaction yet!</p>
+                    (
+                        <>
+                            <h3 className={styles.title}>Transactions</h3>
+                            <SearchBar setSearchValue={setSearchValue}/>
+                            {
+                                showedTransaction.length ? renderTransactions(showedTransaction) :
+
+                                    transaction.length ?
+                                        <p className={styles.empty}>no item matched!</p>
+                                        :
+                                        <p className={styles.empty}>You have not added any transaction yet!</p>
+                            }
+                        </>
+                    )
             }
+
         </div>
     );
 };

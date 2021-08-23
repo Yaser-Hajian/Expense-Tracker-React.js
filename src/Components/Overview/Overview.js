@@ -21,7 +21,7 @@ const Overview = ({expense, income , addTransaction , balance}) => {
             {
                 showForm &&
                     <div>
-                        <AddTransaction addTransaction={addTransaction} setShowForm={setShowForm}/>
+                        <AddTransaction submitHandler={addTransaction} setShowForm={setShowForm}/>
                     </div>
             }
             <div className={styles.info}>
