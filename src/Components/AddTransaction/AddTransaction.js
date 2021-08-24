@@ -29,12 +29,13 @@ const AddTransaction = ({submitHandler , setShowForm , editItem}) => {
     }
     const onSubmit=(event)=>{
         event.preventDefault();
+        console.log({type})
         let isOK = true;
         if (title === "" || amount === ""){
             alert("You have to set transaction title and amount");
             isOK = false;
         }
-        if (type === null){
+        if (type === ""){
             alert("you have to set transaction type");
             isOK = false;
         }
